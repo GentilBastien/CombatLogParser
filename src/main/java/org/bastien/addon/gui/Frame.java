@@ -1,9 +1,10 @@
 package org.bastien.addon.gui;
 
-import org.bastien.addon.gui.components.FeatureComponent;
 import org.bastien.addon.gui.components.FooterComponent;
 import org.bastien.addon.gui.components.HeaderComponent;
+import org.bastien.addon.gui.containers.RouterOutlet;
 import org.bastien.addon.gui.resources.styles.Styles;
+import org.bastien.addon.gui.views.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +19,24 @@ public class Frame extends JFrame {
         setLocationRelativeTo(null);
 
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        final HeaderComponent header = new HeaderComponent();
+
+        final View featureView = new FeatureView();
+        final View scoreBoardView = new ScoreBoardView();
+        final View timelineView = new TimelineView();
+        final View logsStructureView = new LogsStructureView();
+
+        final RouterOutlet routerOutlet = new RouterOutlet();
+        routerOutlet.addView(featureView);
+        routerOutlet.addView(scoreBoardView);
+        routerOutlet.addView(timelineView);
+        routerOutlet.addView(logsStructureView);
+        final HeaderComponent header = new HeaderComponent(routerOutlet);
         final FooterComponent footer = new FooterComponent();
-        final FeatureComponent content = new FeatureComponent();
+
         getContentPane().setBackground(Styles.background);
         getContentPane().add(header, BorderLayout.NORTH);
         getContentPane().add(footer, BorderLayout.SOUTH);
-        getContentPane().add(content, BorderLayout.CENTER);
+        getContentPane().add(routerOutlet, BorderLayout.CENTER);
         setVisible(true);
     }
 }

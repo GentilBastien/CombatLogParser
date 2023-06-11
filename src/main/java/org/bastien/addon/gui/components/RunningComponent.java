@@ -8,6 +8,15 @@ import javax.swing.border.TitledBorder;
 import java.awt.*;
 
 public class RunningComponent extends JPanel {
+
+    private final Icons[] runningAbilities = new Icons[]{
+            Icons.KOLTO_SHELL,
+            Icons.SHIELD,
+            Icons.SHIELD,
+            Icons.STATIC_BARRIER,
+            Icons.KOLTO_SHELL,
+    };
+
     public RunningComponent() {
         FlowLayout layout = new FlowLayout(FlowLayout.LEFT, 3, 0);
         setLayout(layout);
@@ -16,11 +25,12 @@ public class RunningComponent extends JPanel {
         );
         setBackground(Styles.background);
         setBorder(border);
-        JLabel labelIcon = new JLabel(Icons.KOLTO_SHELL.getIcon());
-        JLabel labelIcon2 = new JLabel(Icons.KOLTO_SHELL.getIcon());
+
+        for (Icons runningAbility : runningAbilities) {
+            add(new JLabel(runningAbility.getIcon()));
+        }
+
         JLabel runningIcon = new JLabel(Icons.LIVE.getSelectedIcon());
-        add(labelIcon);
-        add(labelIcon2);
         add(runningIcon);
     }
 }
