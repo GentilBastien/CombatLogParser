@@ -66,7 +66,6 @@ public class FeatureCheckComponent extends JToggleButton {
         add(p1);
 
         addItemListener(itemEvent -> changeState(itemEvent.getStateChange() == ItemEvent.SELECTED));
-
         changeState(false);
     }
 

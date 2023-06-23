@@ -1,6 +1,6 @@
 package org.bastien.addon.gui.containers;
 
-import org.bastien.addon.gui.views.*;
+import org.bastien.addon.gui.views.View;
 
 import javax.swing.*;
 import java.awt.*;
@@ -14,7 +14,7 @@ public class RouterOutlet extends JPanel {
 
     public RouterOutlet() {
         setOpaque(false);
-        this.views = new ArrayList<View>();
+        this.views = new ArrayList<>();
         this.cardLayout = new CardLayout();
         setLayout(cardLayout);
     }

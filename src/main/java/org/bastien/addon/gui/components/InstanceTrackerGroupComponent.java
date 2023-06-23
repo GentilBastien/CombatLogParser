@@ -1,6 +1,5 @@
 package org.bastien.addon.gui.components;
 
-import org.bastien.addon.gui.models.Outcome;
 import org.bastien.addon.gui.resources.styles.Styles;
 
 import javax.swing.*;
@@ -8,16 +7,7 @@ import java.awt.*;
 
 public class InstanceTrackerGroupComponent extends JPanel {
 
-    private final InstanceTrackerRadioComponent[] instances = new InstanceTrackerRadioComponent[]{
-            new InstanceTrackerRadioComponent(Outcome.ONGOING),
-            new InstanceTrackerRadioComponent(Outcome.WIN),
-            new InstanceTrackerRadioComponent(Outcome.WIN),
-            new InstanceTrackerRadioComponent(Outcome.DEFEAT),
-            new InstanceTrackerRadioComponent(Outcome.DEFEAT),
-            new InstanceTrackerRadioComponent(Outcome.WIN),
-    };
-
-    public InstanceTrackerGroupComponent() {
+    public InstanceTrackerGroupComponent(InstanceTrackerRadioComponent[] instances) {
         super(new BorderLayout());
         setOpaque(false);
 

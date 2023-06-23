@@ -70,7 +70,7 @@ public final class FolderWatcherTask implements Runnable {
         reOpenStream();
     }
 
-    private void closeStream() throws IOException {
+    private void closeStream() {
         if (task != null)
             task.doOnClose();
         if (threadWatcher != null)

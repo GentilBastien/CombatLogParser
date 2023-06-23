@@ -3,7 +3,7 @@ package org.bastien.addon.parser.impl;
 import java.util.regex.Pattern;
 
 public abstract class RegExpParser<T> implements Parser<T> {
-    protected Pattern pattern;
+    protected final Pattern pattern;
 
     protected RegExpParser() {
         this.pattern = Pattern.compile(getRegex());

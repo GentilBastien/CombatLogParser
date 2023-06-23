@@ -13,7 +13,7 @@ public class InstanceTrackerRadioComponent extends JRadioButton {
     private final Outcome outcome;
     private final Border enabledBorder, disabledBorder;
 
-    public InstanceTrackerRadioComponent(Outcome outcome) {
+    public InstanceTrackerRadioComponent(String areaName, String timestamp, Outcome outcome) {
         final Border paddingBorder = BorderFactory.createEmptyBorder(10, 10, 10, 10);
         this.enabledBorder = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Styles.primary, 2, true), paddingBorder);
         this.disabledBorder = BorderFactory.createCompoundBorder(BorderFactory.createLineBorder(Styles.white20, 2, true), paddingBorder);
@@ -29,16 +29,8 @@ public class InstanceTrackerRadioComponent extends JRadioButton {
         texts.setBorder(BorderFactory.createEmptyBorder(0, 0, 0, 20));
         texts.setOpaque(false);
 
-        final JLabel labelArea = new JLabel();
-        labelArea.setText("Tatooine canyon");
-        labelArea.setFont(Styles.fontPlain10);
-        labelArea.setForeground(Styles.white80);
-
-        final JLabel labelTimestamp = new JLabel();
-        labelTimestamp.setText("20:02.05-29-2023");
-        labelTimestamp.setFont(Styles.fontPlain10);
-        labelTimestamp.setForeground(Styles.white60);
-
+        final JLabel labelArea = buildTextLabel(areaName, Styles.white);
+        final JLabel labelTimestamp = buildTextLabel(timestamp, Styles.white80);
         final JLabel status = buildStatusLabel();
 
         texts.add(labelArea, BorderLayout.NORTH);
@@ -52,6 +44,14 @@ public class InstanceTrackerRadioComponent extends JRadioButton {
     public void setState(boolean isSelected) {
         setBorder(isSelected ? enabledBorder : disabledBorder);
         repaint();
+    }
+
+    private JLabel buildTextLabel(String text, Color fg) {
+        final JLabel label = new JLabel();
+        label.setText(text);
+        label.setFont(Styles.fontPlain10);
+        label.setForeground(fg);
+        return label;
     }
 
     private JLabel buildStatusLabel() {

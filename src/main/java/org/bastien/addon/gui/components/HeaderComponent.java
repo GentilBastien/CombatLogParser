@@ -1,7 +1,6 @@
 package org.bastien.addon.gui.components;
 
 import org.bastien.addon.gui.containers.RouterOutlet;
-import org.bastien.addon.gui.resources.icons.Icons;
 import org.bastien.addon.gui.resources.styles.Styles;
 
 import javax.swing.*;
@@ -10,14 +9,8 @@ import java.util.Iterator;
 
 public class HeaderComponent extends JPanel {
     private final ButtonGroup buttonGroup;
-    private final MainMenuRadioComponent[] radios = new MainMenuRadioComponent[]{
-            new MainMenuRadioComponent("FEATURES", Icons.FEATURE),
-            new MainMenuRadioComponent("SCOREBOARD", Icons.CHARTS),
-            new MainMenuRadioComponent("TIMELINE", Icons.TIMELINE),
-            new MainMenuRadioComponent("LOGS_STRUCTURE", Icons.LOGS)
-    };
 
-    public HeaderComponent(RouterOutlet routerOutlet) {
+    public HeaderComponent(RouterOutlet routerOutlet, MainMenuRadioComponent[] radios, RunningComponent runningComponent) {
         this.buttonGroup = new ButtonGroup();
 
         setLayout(new BorderLayout());
@@ -40,12 +33,11 @@ public class HeaderComponent extends JPanel {
                 }
             });
             mainMenuPanel.add(radio);
-            mainMenuPanel.add(Box.createRigidArea(new Dimension(15,0)));
+            mainMenuPanel.add(Box.createRigidArea(new Dimension(15, 0)));
         }
 
         buttonGroup.setSelected(radios[0].getModel(), true);
 
-        final RunningComponent runningComponent = new RunningComponent();
         add(mainMenuPanel, BorderLayout.WEST);
         add(runningComponent, BorderLayout.EAST);
     }

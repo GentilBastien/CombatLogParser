@@ -36,7 +36,7 @@ public class TMPAbilityWriter {
         new TMPAbilityWriter();
     }
 
-    public void readCombatLogLine(String line) throws IOException, InterruptedException {
+    public void readCombatLogLine(String line) throws InterruptedException {
         String[] sources = line.split("(?<=])\\s");
         String source = null;
         try {

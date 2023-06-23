@@ -9,15 +9,7 @@ import java.awt.*;
 
 public class RunningComponent extends JPanel {
 
-    private final Icons[] runningAbilities = new Icons[]{
-            Icons.KOLTO_SHELL,
-            Icons.SHIELD,
-            Icons.SHIELD,
-            Icons.STATIC_BARRIER,
-            Icons.KOLTO_SHELL,
-    };
-
-    public RunningComponent() {
+    public RunningComponent(Icons[] runningAbilities) {
         FlowLayout layout = new FlowLayout(FlowLayout.LEFT, 3, 0);
         setLayout(layout);
         final TitledBorder border = BorderFactory.createTitledBorder(
