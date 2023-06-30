@@ -10,6 +10,7 @@ public final class Styles {
     public static final Font fontBold20 = new Font("JetBrains Mono", Font.BOLD, 20);
     public static final Color background = new Color(0x161616);
     public static final Color primary = new Color(0x5437DC);
+    public static final Color primary_light = new Color(0x4C4C67);
     public static final Color red = new Color(0xFF3737);
     public static final Color green = new Color(0x78FF78);
     public static final Color orange = new Color(0xFF9900);

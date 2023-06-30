@@ -36,9 +36,10 @@ public class Frame extends JFrame {
                 new InstanceTrackerRadioComponent("Tatooine Canyon", "20:02.05-29-2023", Outcome.WIN),
         };
         final InstanceTrackerGroupComponent instanceTrackerGroupComponent = new InstanceTrackerGroupComponent(instances);
+        final TimeSliderComponent timeSliderComponent = new TimeSliderComponent(180);
 
         final View featureView = new FeatureView(features);
-        final View scoreBoardView = new ScoreBoardView(instanceTrackerGroupComponent);
+        final View scoreBoardView = new ScoreBoardView(instanceTrackerGroupComponent, timeSliderComponent);
         final View timelineView = new TimelineView();
         final View logsStructureView = new LogsStructureView();
 
