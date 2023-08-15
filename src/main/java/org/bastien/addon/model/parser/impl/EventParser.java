@@ -1,4 +1,4 @@
-package org.bastien.addon.parser.impl;
+package org.bastien.addon.model.parser.impl;
 
 import org.bastien.addon.model.constant.Event;
 

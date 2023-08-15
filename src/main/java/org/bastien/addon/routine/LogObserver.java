@@ -4,7 +4,7 @@ import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import lombok.NonNull;
 import org.bastien.addon.model.CombatLog;
-import org.bastien.addon.parser.CombatLogParser;
+import org.bastien.addon.model.parser.CombatLogParser;
 
 public class LogObserver implements Observer<String> {
     private final CombatLogParser combatLogParser = CombatLogParser.getInstance();

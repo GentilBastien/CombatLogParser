@@ -1,4 +1,4 @@
-package org.bastien.addon.parser.impl;
+package org.bastien.addon.model.parser.impl;
 
 import java.util.regex.Matcher;
 

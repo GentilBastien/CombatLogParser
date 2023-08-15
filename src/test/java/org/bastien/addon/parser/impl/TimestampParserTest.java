@@ -1,6 +1,6 @@
 package org.bastien.addon.parser.impl;
 
-import org.bastien.addon.parser.impl.TimestampParser;
+import org.bastien.addon.model.parser.impl.TimestampParser;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalTime;

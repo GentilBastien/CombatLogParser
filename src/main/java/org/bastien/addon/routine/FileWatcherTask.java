@@ -18,7 +18,7 @@ public final class FileWatcherTask implements Runnable {
     public FileWatcherTask(final Path filePath, final LogObserver observer) {
         this.filePath = filePath;
         this.observer = observer;
-        this.observable = Observable.interval(1500, TimeUnit.MILLISECONDS)
+        this.observable = Observable.interval(3000, TimeUnit.MILLISECONDS)
                 .map(tick -> poolNewLines())
                 .flatMap(Observable::fromIterable);
         try {

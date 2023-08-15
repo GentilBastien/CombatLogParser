@@ -1,11 +1,11 @@
-package org.bastien.addon.parser.impl;
+package org.bastien.addon.model.parser.impl;
 
 import org.bastien.addon.model.constant.Effect;
 import org.bastien.addon.model.constant.EffectType;
 import org.bastien.addon.model.constant.EnergyType;
 import org.bastien.addon.model.entities.Ability;
 import org.bastien.addon.model.entities.EffectBatch;
-import org.bastien.addon.parser.ParserFactory;
+import org.bastien.addon.model.parser.ParserFactory;
 
 import java.util.regex.Matcher;
 

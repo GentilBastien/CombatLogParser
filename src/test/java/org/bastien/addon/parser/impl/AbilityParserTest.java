@@ -1,7 +1,7 @@
 package org.bastien.addon.parser.impl;
 
 import org.bastien.addon.model.entities.Ability;
-import org.bastien.addon.parser.impl.AbilityParser;
+import org.bastien.addon.model.parser.impl.AbilityParser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -4,7 +4,7 @@ import org.bastien.addon.model.constant.CombatStyle;
 import org.bastien.addon.model.constant.Discipline;
 import org.bastien.addon.model.constant.Effect;
 import org.bastien.addon.model.entities.EffectBatch;
-import org.bastien.addon.parser.impl.DisciplineParser;
+import org.bastien.addon.model.parser.impl.DisciplineParser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

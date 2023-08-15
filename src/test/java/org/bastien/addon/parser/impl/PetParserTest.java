@@ -1,7 +1,7 @@
 package org.bastien.addon.parser.impl;
 
 import org.bastien.addon.model.entities.Pet;
-import org.bastien.addon.parser.impl.PetParser;
+import org.bastien.addon.model.parser.impl.PetParser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

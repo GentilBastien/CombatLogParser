@@ -33,7 +33,6 @@ public class MainMenuRadioComponent extends JRadioButton {
     protected void paintComponent(@NotNull Graphics g) {
         g.setColor(getBackground());
         g.fillRect(0, 0, getWidth(), getHeight());
-        getBorder().paintBorder(this, g, 0, 0, getWidth(), getHeight());
         super.paintComponent(g);
     }
 }

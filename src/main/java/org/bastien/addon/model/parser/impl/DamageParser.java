@@ -1,8 +1,8 @@
-package org.bastien.addon.parser.impl;
+package org.bastien.addon.model.parser.impl;
 
 import org.bastien.addon.model.constant.DamageType;
+import org.bastien.addon.model.parser.ParserFactory;
 import org.bastien.addon.model.results.Damage;
-import org.bastien.addon.parser.ParserFactory;
 
 import java.util.regex.Matcher;
 

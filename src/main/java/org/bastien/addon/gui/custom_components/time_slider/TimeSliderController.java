@@ -15,11 +15,11 @@ public class TimeSliderController extends MouseAdapter {
         this.model = model;
         this.view = view;
 
-        model.setLowerValue(0.2);
-        view.setLowerValuePx(0.2, model.getLowerValue());
+        model.setLowerValue(0);
+        view.setLowerValuePx(0, model.getLowerValue());
 
-        model.setUpperValue(0.7);
-        view.setUpperValuePx(0.7, model.getUpperValue());
+        model.setUpperValue(1);
+        view.setUpperValuePx(1, model.getUpperValue());
 
         view.setLabels(model.getNTicks());
 

@@ -2,7 +2,7 @@ package org.bastien.addon.parser.impl;
 
 import org.bastien.addon.model.constant.DamageType;
 import org.bastien.addon.model.results.Damage;
-import org.bastien.addon.parser.impl.DamageParser;
+import org.bastien.addon.model.parser.impl.DamageParser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

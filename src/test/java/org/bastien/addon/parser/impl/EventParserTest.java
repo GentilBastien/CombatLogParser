@@ -1,7 +1,7 @@
 package org.bastien.addon.parser.impl;
 
 import org.bastien.addon.model.constant.Event;
-import org.bastien.addon.parser.impl.EventParser;
+import org.bastien.addon.model.parser.impl.EventParser;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

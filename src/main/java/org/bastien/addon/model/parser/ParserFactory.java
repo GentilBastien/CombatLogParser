@@ -1,6 +1,6 @@
-package org.bastien.addon.parser;
+package org.bastien.addon.model.parser;
 
-import org.bastien.addon.parser.impl.*;
+import org.bastien.addon.model.parser.impl.*;
 
 import java.util.HashMap;
 import java.util.Map;

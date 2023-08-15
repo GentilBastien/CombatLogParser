@@ -1,4 +1,4 @@
-package org.bastien.addon.parser;
+package org.bastien.addon.model.parser;
 
 import lombok.RequiredArgsConstructor;
 import org.bastien.addon.model.CombatLog;
@@ -8,22 +8,13 @@ import org.bastien.addon.model.constant.Event;
 import org.bastien.addon.model.entities.Ability;
 import org.bastien.addon.model.entities.EffectBatch;
 import org.bastien.addon.model.entities.Player;
-import org.bastien.addon.parser.impl.*;
+import org.bastien.addon.model.parser.impl.*;
 
 import java.time.LocalTime;
 
 @RequiredArgsConstructor
 public class CombatLogParser implements Parser<CombatLog> {
     private static final CombatLogParser instance = new CombatLogParser();
-
-    public static void main(String[] args) {
-        System.out.println(
-//                instance.parse("[20:59:32.235] [@Shalõm#689827937833450|(-4634.64,-4699.53,710.02,45.44)|(397176/397176)] [=] [] [Spend {836045448945473}: Force {836045448938502}] (45)")
-//                instance.parse("[19:08:08.149] [Dar'manda Specialist {4418756843405312}:460000041003|(169.65,-17.05,17.64,-149.10)|(117191/117191)] [@Jiñdsõ#689980617080692|(170.91,-14.94,17.64,98.47)|(253786/253786)] [Smoke Grenade {2268666150256640}] [ApplyEffect {836045448945477}: Accuracy Reduced [Tech] {2268666150256900}]")
-//                instance.parse("[18:01:10.905] [@Jyndso#689252310151806|(1217.66,-4250.03,-847.84,88.01)|(219575/219575)] [=] [] [Re")
-//                instance.parse("[17:57:17.124] [@Jyndso#689252310151806|(1226.42,-4250.82,-847.93,-102.64)|(1/219575)] [] [] [AreaEntered {836045448953664}: Imperial Fleet {137438989504}] (he4000) <v7.0.0b>")
-        );
-    }
 
     public static CombatLogParser getInstance() {
         return instance;
