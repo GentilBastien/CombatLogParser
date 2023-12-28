@@ -1,23 +1,22 @@
 package org.bastien.addon.routine;
 
+import lombok.Getter;
+
 import java.nio.file.Path;
 
 public final class Watcher {
+    @Getter
     private static final Watcher instance = new Watcher();
-    private final LogObserver observer;
+    private final CombatLogObserver observer;
     private FolderWatcherTask task;
     private Path folderPath;
     private Thread threadWatcher;
 
     private Watcher() {
-        this.observer = new LogObserver();
+        this.observer = new CombatLogObserver();
         this.folderPath = null;
         this.task = null;
         this.threadWatcher = null;
-    }
-
-    public static Watcher getInstance() {
-        return instance;
     }
 
     public void setCombatLogDirectory(final Path newCombatLogDirectoryPath) {
@@ -33,10 +32,8 @@ public final class Watcher {
     }
 
     private void closeStream() {
-        if (task != null)
-            task.doOnClose();
-        if (threadWatcher != null)
-            threadWatcher.interrupt();
+        if (task != null) task.doOnClose();
+        if (threadWatcher != null) threadWatcher.interrupt();
         task = null;
     }
 

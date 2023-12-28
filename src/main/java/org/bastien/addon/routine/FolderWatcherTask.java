@@ -10,14 +10,14 @@ import java.util.regex.Pattern;
 public final class FolderWatcherTask implements Runnable {
     private static final Pattern COMBAT_LOG_NAME_PATTERN = Pattern.compile("combat_+\\d{4}-\\d{2}-\\d{2}_\\d{2}_\\d{2}_\\d{2}_\\d{6}.txt");
     private final Path folderPath;
-    private final LogObserver observer;
+    private final CombatLogObserver observer;
     private WatchService watchService;
     private Path filePath;
     private FileWatcherTask task;
     private Thread threadWatcher;
     private boolean run;
 
-    FolderWatcherTask(final Path folderPath, LogObserver observer) {
+    FolderWatcherTask(final Path folderPath, CombatLogObserver observer) {
         this.folderPath = folderPath;
         this.observer = observer;
         this.filePath = null;

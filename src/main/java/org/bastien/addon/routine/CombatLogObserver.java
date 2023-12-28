@@ -3,12 +3,15 @@ package org.bastien.addon.routine;
 import io.reactivex.rxjava3.core.Observer;
 import io.reactivex.rxjava3.disposables.Disposable;
 import lombok.NonNull;
-import org.bastien.addon.model.CombatLog;
-import org.bastien.addon.model.parser.CombatLogParser;
+import org.jetbrains.annotations.NotNull;
 
-public class LogObserver implements Observer<String> {
-    private final CombatLogParser combatLogParser = CombatLogParser.getInstance();
+public class CombatLogObserver implements Observer<String> {
+    private final CombatLogController combatLogController;
     private Disposable disposable;
+
+    public CombatLogObserver() {
+        this.combatLogController = new CombatLogController();
+    }
 
     @Override
     public void onSubscribe(@NonNull Disposable d) {
@@ -17,19 +20,18 @@ public class LogObserver implements Observer<String> {
 
     @Override
     public void onNext(@NonNull String s) {
-        CombatLog combatLog = combatLogParser.parse(s);
-        System.out.println("next -> " + combatLog);
+        combatLogController.onNext(s);
     }
 
     @Override
-    public void onError(Throwable e) {
-        e.printStackTrace();
+    public void onError(@NotNull Throwable e) {
         disposable.dispose();
-        System.exit(0);
+        combatLogController.onError(e);
     }
 
     @Override
     public void onComplete() {
         disposable.dispose();
+        combatLogController.onComplete();
     }
 }

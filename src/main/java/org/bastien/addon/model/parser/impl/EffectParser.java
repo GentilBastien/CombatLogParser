@@ -1,8 +1,9 @@
 package org.bastien.addon.model.parser.impl;
 
-import org.bastien.addon.model.constant.Effect;
+import org.bastien.addon.model.constant.EffectAction;
 import org.bastien.addon.model.constant.EffectType;
 import org.bastien.addon.model.constant.EnergyType;
+import org.bastien.addon.model.constant.Location;
 import org.bastien.addon.model.entities.Ability;
 import org.bastien.addon.model.entities.EffectBatch;
 import org.bastien.addon.model.parser.ParserFactory;
@@ -37,31 +38,35 @@ public class EffectParser extends RegExpParser<EffectBatch> {
             return null;
         final Matcher matcher = pattern.matcher(source);
         if (!matcher.matches())
-            throw new RuntimeException("Effect parser could not parse this source " + source);
+            throw new RuntimeException("EffectAction parser could not parse this source " + source);
         long effectId = Long.parseLong(matcher.group(2));
-        Effect effect = Effect.find(effectId);
+        EffectAction effectAction = EffectAction.find(effectId);
 
-        if (effect == Effect.DISCIPLINE_CHANGED)
+        if (effectAction == EffectAction.DISCIPLINE_CHANGED)
             return disciplineParser.parse(source);
 
         String name = matcher.group(3);
         long secondId = Long.parseLong(matcher.group(4));
 
-        switch (effect) {
-            case APPLY_EFFECT, REMOVE_EFFECT, MODIFY_CHARGES, AREA_ENTERED -> {
+        switch (effectAction) {
+            case AREA_ENTERED -> {
+                Location location = Location.find(secondId);
+                return new EffectBatch(effectAction, location);
+            }
+            case APPLY_EFFECT, REMOVE_EFFECT, MODIFY_CHARGES -> {
                 EffectType effectType = EffectType.find(secondId);
                 if (effectType == EffectType.BUFF) {
                     Ability ability = new Ability(secondId, name, true);
-                    return new EffectBatch(effect, effectType, ability);
+                    return new EffectBatch(effectAction, effectType, ability);
                 }
-                return new EffectBatch(effect, effectType);
+                return new EffectBatch(effectAction, effectType);
             }
             case SPEND, RESTORE -> {
                 EnergyType energyType = EnergyType.find(secondId);
-                return new EffectBatch(effect, energyType);
+                return new EffectBatch(effectAction, energyType);
             }
         }
-        throw new RuntimeException("Effect has not been parsed -> " + source);
+        throw new RuntimeException("EffectAction has not been parsed -> " + source);
     }
 
     @Override

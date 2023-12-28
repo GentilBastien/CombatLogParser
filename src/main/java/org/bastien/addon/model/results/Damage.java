@@ -4,7 +4,7 @@ import org.bastien.addon.model.constant.DamageType;
 
 import java.util.StringJoiner;
 
-public record Damage(long totalDamage, long effectiveDamage, long overDamage, long encochedDamage, boolean isCritical,
+public record Damage(long totalDamage, long effectiveDamage, long overDamage, long threatDamage, boolean isCritical,
                      boolean isShielded, DamageType damageType, DamageType causeDamage, long absorbedDamage,
                      long reflectedDamage) {
 
@@ -14,7 +14,7 @@ public record Damage(long totalDamage, long effectiveDamage, long overDamage, lo
                 .add("totalDamage=" + totalDamage)
                 .add("effectiveDamage=" + effectiveDamage)
                 .add("overDamage=" + overDamage)
-                .add("encochedDamage=" + encochedDamage)
+                .add("threatDamage=" + threatDamage)
                 .add("isCritical=" + isCritical)
                 .add("isShielded=" + isShielded)
                 .add("damageType=" + damageType)

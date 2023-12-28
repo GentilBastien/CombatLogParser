@@ -10,7 +10,7 @@ public final class ParserFactory {
 
     static {
         ParserFactory.registerParser(TimestampParser.class);
-        ParserFactory.registerParser(EncochedNumberParser.class);
+        ParserFactory.registerParser(ThreatNumberParser.class);
         ParserFactory.registerParser(AbsorbedParser.class);
         ParserFactory.registerParser(ParenthesisNumberParser.class);
         ParserFactory.registerParser(DamageParser.class);

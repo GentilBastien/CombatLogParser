@@ -1,10 +1,12 @@
 package org.bastien.addon.model.parser;
 
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.bastien.addon.model.CombatLog;
 import org.bastien.addon.model.constant.EffectType;
 import org.bastien.addon.model.constant.EnergyType;
 import org.bastien.addon.model.constant.Event;
+import org.bastien.addon.model.constant.Location;
 import org.bastien.addon.model.entities.Ability;
 import org.bastien.addon.model.entities.EffectBatch;
 import org.bastien.addon.model.entities.Player;
@@ -14,14 +16,12 @@ import java.time.LocalTime;
 
 @RequiredArgsConstructor
 public class CombatLogParser implements Parser<CombatLog> {
+    @Getter
     private static final CombatLogParser instance = new CombatLogParser();
-
-    public static CombatLogParser getInstance() {
-        return instance;
-    }
+    boolean isPvPArea = false;
 
     @Override
-    public CombatLog parse(String rawLine) {
+    public CombatLog parse(String rawLine) throws RuntimeException {
         String[] sources = rawLine.split("(?<=])\\s(?=[\\[(<])");
         LocalTime timestamp = ParserFactory.getInstance(TimestampParser.class).parse(sources[0]);
         Player source = detectPlayerType(sources[1], rawLine);
@@ -33,6 +33,7 @@ public class CombatLogParser implements Parser<CombatLog> {
             event = ParserFactory.getInstance(EventParser.class).parse(sources[4]);
         } else {
             effect = ParserFactory.getInstance(EffectParser.class).parse(sources[4]);
+            this.isPvPArea = isLogInPvPLocation(effect);
         }
 
         Object content = null;
@@ -41,23 +42,26 @@ public class CombatLogParser implements Parser<CombatLog> {
                 content = buildEventContent(event, sources[5], rawLine);
             }
             if (effect != null) {
-                switch (effect.getEffect()) {
-                    case APPLY_EFFECT -> content = buildEffectTypeContent(effect.getEffectType().orElseThrow(), sources[5], rawLine);
+                switch (effect.getAction()) {
+                    case APPLY_EFFECT -> content = buildEffectTypeContent(effect.getType(), sources[5], rawLine);
                     case MODIFY_CHARGES -> content = ParserFactory.getInstance(ChargesParser.class).parse(sources[5]);
-                    case SPEND, RESTORE -> content = buildEnergyTypeContent(effect.getEnergyType().orElseThrow(), sources[5], rawLine);
+                    case SPEND, RESTORE ->
+                            content = buildEnergyTypeContent(effect.getEnergyType(), sources[5], rawLine);
                 }
             }
         }
-        return CombatLog.builder().timestamp(timestamp).source(source).target(target).ability(ability).event(event).effect(effect).value(content).rawLog(rawLine).build();
+        return new CombatLog(isPvPArea, timestamp, source, target, ability, event, effect, content, rawLine);
+    }
+
+    private boolean isLogInPvPLocation(EffectBatch effect) {
+        return effect.getLocation() != Location.NO_PvP_LOCATION;
     }
 
     private Player detectPlayerType(String source, String rawLine) {
         try {
-            if (!source.contains("@"))
-                return ParserFactory.getInstance(MobParser.class).parse(source);
-            return source.contains("{") ?
-                    ParserFactory.getInstance(PetParser.class).parse(source) :
-                    ParserFactory.getInstance(PlayerParser.class).parse(source);
+            if (!source.contains("@")) return ParserFactory.getInstance(MobParser.class).parse(source);
+            return source.contains("{") ? ParserFactory.getInstance(PetParser.class).parse(
+                    source) : ParserFactory.getInstance(PlayerParser.class).parse(source);
         } catch (RuntimeException e) {
             throw new RuntimeException(e.getMessage() + " This source has an incorrect player -> " + rawLine);
         }
@@ -66,7 +70,7 @@ public class CombatLogParser implements Parser<CombatLog> {
     private Object buildEventContent(Event event, String source, String rawLine) {
         switch (event) {
             case MODIFY_THREAT, TAUNT -> {
-                return ParserFactory.getInstance(EncochedNumberParser.class).parse(source);
+                return ParserFactory.getInstance(ThreatNumberParser.class).parse(source);
             }
             case FALLING_DAMAGE, SET_LEVEL -> {
                 return ParserFactory.getInstance(ParenthesisNumberParser.class).parse(source);
@@ -86,7 +90,7 @@ public class CombatLogParser implements Parser<CombatLog> {
             case BUFF -> {
                 return ParserFactory.getInstance(ChargesParser.class).parse(source);
             }
-            default -> throw new RuntimeException("This effect types don't have content -> " + rawLine);
+            default -> throw new RuntimeException("This effectAction types don't have content -> " + rawLine);
         }
     }
 

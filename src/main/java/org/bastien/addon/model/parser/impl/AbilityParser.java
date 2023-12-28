@@ -14,7 +14,7 @@ public class AbilityParser extends RegExpParser<Ability> {
         if (matcher.find()) {
             long id = Long.parseLong(matcher.group(2));
             String name = matcher.group(1);
-            return new Ability(id, name, false); //todo check en BDD pour savoir si oui on non c'est un buff
+            return new Ability(id, name, false);
         }
         return null;
     }

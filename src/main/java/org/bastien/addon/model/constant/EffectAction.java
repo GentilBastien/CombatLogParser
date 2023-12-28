@@ -7,7 +7,7 @@ import java.util.Arrays;
 
 @Getter
 @RequiredArgsConstructor
-public enum Effect {
+public enum EffectAction {
     APPLY_EFFECT(836045448945477L),
     REMOVE_EFFECT(836045448945478L),
     MODIFY_CHARGES(836045448953666L),
@@ -18,10 +18,10 @@ public enum Effect {
 
     private final long id;
 
-    public static Effect find(long id) {
-        return Arrays.stream(Effect.values())
+    public static EffectAction find(long id) {
+        return Arrays.stream(EffectAction.values())
                 .filter(effect -> effect.id == id)
                 .findFirst()
-                .orElseThrow(() -> new RuntimeException("No effect matching id " + id));
+                .orElseThrow(() -> new RuntimeException("No effectAction matching id " + id));
     }
 }
