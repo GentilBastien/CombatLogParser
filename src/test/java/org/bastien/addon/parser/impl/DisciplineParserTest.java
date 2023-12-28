@@ -19,9 +19,9 @@ public class DisciplineParserTest {
         assertEquals(expected.getAction(), actual.getAction());
         assertEquals(expected.getCombatStyle(), actual.getCombatStyle());
         assertEquals(expected.getDiscipline(), actual.getDiscipline());
-        assertEquals(expected.getEnergyType().isEmpty(), actual.getEnergyType().isEmpty());
-        assertEquals(expected.getType().isEmpty(), actual.getType().isEmpty());
-        assertEquals(expected.getAbility().isEmpty(), actual.getAbility().isEmpty());
+        assertEquals(expected.getEnergyType(), actual.getEnergyType());
+        assertEquals(expected.getType(), actual.getType());
+        assertEquals(expected.getAbility(), actual.getAbility());
     }
 
     @Test
@@ -32,8 +32,8 @@ public class DisciplineParserTest {
         assertEquals(expected.getAction(), actual.getAction());
         assertEquals(expected.getCombatStyle(), actual.getCombatStyle());
         assertEquals(expected.getDiscipline(), actual.getDiscipline());
-        assertEquals(expected.getEnergyType().isEmpty(), actual.getEnergyType().isEmpty());
-        assertEquals(expected.getType().isEmpty(), actual.getType().isEmpty());
-        assertEquals(expected.getAbility().isEmpty(), actual.getAbility().isEmpty());
+        assertEquals(expected.getEnergyType(), actual.getEnergyType());
+        assertEquals(expected.getType(), actual.getType());
+        assertEquals(expected.getAbility(), actual.getAbility());
     }
 }
